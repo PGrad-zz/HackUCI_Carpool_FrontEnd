@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
 	<meta http-equiv="x-ua-compatible" content="IE=edge" />
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 	<title>Login | PoolBuddy</title>
     <link rel="stylesheet" href="./index.css">
+    <meta charset="utf-8">
 </head>
 
 </style>
@@ -23,8 +24,9 @@
   <script>(function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
+    appID = JSON.parse(./cfg.json).appID;
     js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=1236610303113298";
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=" + appID;
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script> 
  <!-- <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>-->
@@ -42,6 +44,9 @@
 			<div id="emaillogin" class="btn">Login with Email</div><br>
 			<div id="register" class="btn">Register</div>
 		</div>
+	</div>
+	<div>
+		<ul id="drivers"></ul>
 	</div>
 </body>
 
@@ -80,8 +85,9 @@
   }
 
   window.fbAsyncInit = function() {
+  appID = JSON.parse('./cfg.json');
   FB.init({
-    appId      : '{1236610303113298}',
+    appId      : '{' + appID + '}',
     cookie     : true,  // enable cookies to allow the server to access 
                         // the session
     xfbml      : true,  // parse social plugins on this page
@@ -120,9 +126,20 @@
   function testAPI(auth) {
     console.log('Welcome!  Fetching your information.... ');
 	e_ids = [1,8,13];
+	host = JSON.parse('./cfg.json').host;
 	for (e_id in e_ids) {
-		$.getJSON('http://ec2-52-53-255-46.us-west-1.compute.amazonaws.com/api/get_drivers/' + auth.userID + '/' + e_id, function() {
-			console.log("success");
+		$.getJSON(host + 'api/get_drivers/' + auth.userID + '/' + e_id, function(data) {
+			  var direct = [][];
+			  var mutual = [][];
+			  var d = 0, m = 0;
+			  $.each( data, function( key, val ) {
+			    if(key === 'friends' && val.length > 0) {
+				console.log(val);
+			    }
+			    else if(val.length > 0)
+				mutual.push( "<li>" + val + "</li>" );
+			  });
+			  console.log(direct);
 		});
 	}  
     }
