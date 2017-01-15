@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="theme-color" content="#ef473a">
+    <meta name="msapplication-navbutton-color" content="#ef473a">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#ef473a">
+    <meta name="application-name" content="Pippy">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<title>Login | PoolBuddy</title>
+</head>
+<style>
+	*,html{
+      font-family: 'Montserrat';
+    }
+	body
+	{
+		background-color:#61b3f3;
+	}
+	#logo{
+		background:url('bigLogo.png');
+		width:167px;
+		height:275px;
+		position:relative;
+		margin-top:5%;
+		left:40%;
+	}
+	.btn{
+		width:190px;
+		padding:15px;
+		font-size:14px;
+		color:#fff;
+		text-align:center;
+		display:inline-block;
+		margin-right:10px;
+		cursor:pointer;
+	}
+	#facebooklogin,{
+		background-color:#3b5998!important;
+		width:190px!important;
+	}
+	#emaillogin{
+		background-color:green;
+	}
+	#register{
+		width:425px;
+		background-color:#ef473a;
+		margin-top:10px;
+	}
+	#buttonset{
+		position:absolute;
+		left:50%;
+		width:480px;
+		margin-left:-230px;
+		bottom:30%;
+	}
+	#appName{
+		color:#fff;
+		font-size:40px;
+		text-align:center;
+		margin-bottom:20px;
+	}
+
+	.fb-login-button{
+		font-size:14px!important;
+		width:190px!important;
+		margin-right:10px!important;
+		padding:15px!important;
+		padding-top:14px!important;
+		font-family: 'Montserrat'!important;
+		background-color:#3b5998!important;
+	}
+
+	.fb-login-button:hover{
+		background-color:#3b5998!important;
+	}
+
+	#facebook-login2{
+		display:inline-block;
+		width:190px;
+		background-color: #3b5998;
+		padding:15px;
+	}
+
+</style>
+<body>
+	<div id="page">
+		<div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=1236610303113298";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script> 
+ <!-- <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>-->
+		<div id="logo"></div>
+		<div id="buttonset">
+			<div id="appName">PoolBuddy</div>
+			<!--<div id="facebooklogin" class="btn">Login with Facebook</div>-->
+	<div id="facebook-login2">
+        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+        </fb:login-button>
+        </div>
+                        <div id="emaillogin" class="btn">Login with Email</div><br>
+                        <div id="register" class="btn">Register</div>
+                </div>
+        </div>	
+</body>
+
+
+<script>
+  var request=require('request');
+  // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      var accessToken = response.authResponse.accessToken;
+      testAPI(response.authResponse); 
+    } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into Facebook.';
+    }
+  }
+
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '{1236610303113298}',
+    cookie     : true,  // enable cookies to allow the server to access 
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.8' // use graph api version 2.8
+  });
+
+  // Now that we've initialized the JavaScript SDK, we call 
+  // FB.getLoginStatus().  This function gets the state of the
+  // person visiting this page and can return one of three states to
+  // the callback you provide.  They can be:
+  //
+  // 1. Logged into your app ('connected')
+  // 2. Logged into Facebook, but not your app ('not_authorized')
+  // 3. Not logged into Facebook and can't tell if they are logged into
+  //    your app or not.
+  //
+  // These three cases are handled in the callback function.
+
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  function testAPI(auth) {
+    console.log('Welcome!  Fetching your information....');
+    FB.api('/' + auth.userID + '/friends','GET', function(response, error) {
+      //console.log('Successful login for:' + response.birthday);
+      if (error) throw error;
+      for(key in response.summary)
+	console.log(key + ", " + response[key]); 
+    });
+  }
+</script>
+
+<!--
+  Below we include the Login Button social plugin. This button uses
+  the JavaScript SDK to present a graphical Login button that triggers
+  the FB.login() function when clicked.
+
+-->
+
+
+<div id="status">
+</div>
+
+</html>

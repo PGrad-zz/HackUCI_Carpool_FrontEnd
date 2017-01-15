@@ -1,0 +1,743 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+    <head>
+        <title>PoolBuddy</title>
+        <meta http-equiv="x-ua-compatible" content="IE=edge" />
+        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-touch-fullscreen" content="yes">
+        <link rel="stylesheet" type="text/css" href="snap.css" />
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+        <meta name="theme-color" content="#ef473a">
+        <meta name="msapplication-navbutton-color" content="#ef473a">
+        <meta name="apple-mobile-web-app-status-bar-style" content="#ef473a">
+        <meta name="application-name" content="Pippy">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <link rel="stylesheet" href="../../frontfacing/fa/css/font-awesome.min.css">
+        <!-- Icon Setting -->
+        <link rel="shortcut icon" sizes="192x192" href="img/hiresicon2.png">
+        <link rel="shortcut icon" sizes="128x128" href="img/icon2.png">
+        <link rel="apple-touch-icon" sizes="128x128" href="img/icon2.png">
+        <link rel="apple-touch-icon-precomposed" sizes="128x128" href="img/icon2.png">
+
+    </head>
+
+    <style>
+    *,html{
+      font-family: 'Montserrat';
+    }
+    #userArea{
+      padding:15px;
+      background-color: #20242e;
+    }
+    #profilePic{
+      width:50px;
+      height:50px;
+      display:inline-block;
+      border-radius:50%;
+      background:url('https://scontent-dfw1-1.xx.fbcdn.net/hphotos-xpa1/v/t1.0-9/1380339_10151747530363892_1756076386_n.jpg?oh=9c22c8e505cd3a441b605014608eb021&oe=577C8D86');
+      background-size:50px;
+    }
+    #userName{
+      display:inline-block;
+      height:70px;
+      vertical-align: middle;
+      height: 18px;
+      font-size: 18px;
+      margin-left: 5px;
+    }
+    #page{
+      margin-top:60px;
+      margin-left:20px;
+    }
+    #request{
+      width:100%;
+      font-size:12px;
+      outline:none;
+      font-weight:400;
+      border:none;
+      height:80px;
+      overflow-y:auto;
+      resize: none;
+      color:#a8a8a8;
+      margin-left:-10px;
+    }
+    #getHelp
+    {
+      position:absolute;
+      left:0;
+      width:100%;
+      text-align:center;
+      height:35px;
+      font-size:18px;
+      padding-top:10px;
+      color:#fff;
+      background-color:#ef473a;
+      bottom:0px;
+    }
+    #headline{
+      font-size:31px;
+    }
+    #pippyLogo{
+      background:url('logo.png');
+      background-repeat: no-repeat;
+      margin-top: -7px;
+      background-size: 40px;
+      height: 38px;
+      width: 100%;
+      background-position: right;
+      margin-left: 35px;
+      width: 40px;
+      /* V2 Design New */
+      margin-left: -12px;
+      margin-top: -8px;
+      background-size: 36px;
+      background-position: left;
+    }
+    #menuItem{
+      width:50px;
+      height:50px;
+      background-repeat: no-repeat; 
+    }
+    .promoPage,.creditPage
+    {
+      display:none;
+    }
+    #close-left {
+      text-decoration: none;
+      color:#fff;
+      font-size:30px;
+      text-align:center;
+      display: block;
+      width: 44px;
+      height: 44px;
+    }
+    /* DESIGN V2 */
+    .catitem
+    {
+      width:100%;
+      height:90px;
+      background-color:#ef473a;
+      margin-bottom:1px;
+      position:relative;
+    }
+    #options
+    {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: auto;
+      margin-top: -44px;
+    }
+    .item-bg,.item-filter
+    {
+      position:absolute;
+      width:100%;
+      height:100%;
+      left:0;
+      top:0;
+      opacity:0.8;
+      background-repeat:no-repeat!important;
+      background-size:cover!important;
+    }
+    .item-filter
+    {
+      background-color:#ef473a;
+      opacity:0.35;
+    }
+    .item-title
+    {
+      color:#fff;
+      position:absolute;
+      left:0;
+      width:100%;
+      top:0;
+      height:50px;
+      width:100%;
+      text-align:center;
+      text-shadow: 0 0 5px #333;
+      font-size:38px;
+      top:10px;
+    }
+    .item-more
+    {
+      color:#fff;
+      position:absolute;
+      left:0;
+      width:100%;
+      height:50px;
+      width:100%;
+      text-align:center;
+      text-shadow: 0 0 5px #333;
+      font-size:14px;
+      top:55px;
+      opacity:0.9;
+    }
+    #profilePic
+    {
+      background:url('img/nodp.jpg'); /* var: user's dp */
+      background-size:50px;
+    }
+    .pageTitle
+    {
+      font-size:18px;
+      position: absolute!important;
+      left: 90px!important;
+      text-align: left!important;
+      padding-top:3px!important;
+    }
+    #sep
+    {
+      height: 35px;
+      width: 1px;
+      position: absolute;
+      top: 5px;
+      left: 78px;
+      border-right: 2px solid #fff;
+    }
+    #copyrightArea
+    {
+      padding:15px;
+    }
+    .backbtn
+    {
+      background:url('img/backbtn.png');
+      background-size:20px;
+      background-repeat:no-repeat;
+      background-position:center;
+      padding-top:3px!important;
+    }
+    .menuIcon
+    {
+      width: 25px;
+      height: 25px; 
+      display: inline-block;
+      margin-left: -20px;
+      margin-right: 10px;
+      background-repeat: no-repeat;
+      background-position: bottom;
+      position:absolute;
+      margin-top:-3px;
+      margin-left: -40px;
+      opacity:0.8;
+    }
+    .menuItem
+    {
+      margin-left:0;
+      padding-left:40px!important;
+    }
+    #overlay
+    {
+      position:fixed;
+      left:-1px;
+      top:0;
+      width:150%;
+      overflow:hidden;
+      height:400%;
+      background-color:#000;
+      z-index:100;
+      opacity:0.8;
+      display:none;
+    }
+
+    #popup_AI
+    {
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:400px;
+      z-index:100000;
+      display:none;
+    }
+    #AIrequest
+    {
+      position: fixed;
+      width:96.5%;
+      left: 1%;
+      top: 48px;
+      height: 50px;
+      z-index: 100000;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 2px;
+      box-shadow: 0 10px 50px #000;   
+      overflow-y:auto;
+      resize: none;
+    }
+    #popup_AI_close
+    {
+      position:fixed;
+      z-index:100000;
+      right:14px;
+      top:14px;
+      width:20px;
+      height:20px;
+      background:url('img/close.png');
+      cursor:pointer;
+      background-size:20px;
+
+    }
+    #AI_go_btn
+    {
+      position:fixed;
+      bottom:0px;
+      left:0px;
+      width:100%;
+      height:50px;
+      background-color:#ef473a;
+      text-align:center;
+      color:#fff;
+      padding-top:14px;
+      height:36px;
+      z-index:1000000000;
+    }
+    #extraAItable
+    {
+      z-index:100000000;
+      position:absolute;
+      left:1%;
+      top:140px;
+      width:98%;
+      height:180px;
+    }
+    .btn
+    {
+        outline:none;
+        padding:15px;
+        border:none;
+        cursor:pointer;
+        font-family: 'Montserrat', sans-serif; 
+        color:#fff;
+        font-size:16px;
+    }
+    .emp
+    {
+        text-decoration: underline;
+    }
+    .spinner
+    {
+        margin-left:5px;
+    }
+    .green
+    {
+        background-color:#009207;
+    }
+    .red
+    {
+        background-color:#d20000;
+    }
+    .or
+    {
+        font-size:16px;
+    }
+    .quotePage
+    {
+      display:none;
+    }
+    </style>
+
+    <body>
+        <div class="snap-drawers">
+            <div class="snap-drawer snap-drawer-left">
+                <div>
+                    <div id="userArea">
+                      <table><tr><td>
+                      <div id="profilePic"></div></td><td valign="middle">
+                      <div id="userName">Karan Kanwar</div></td><!-- var: user's name -->
+                    </tr></table>
+                    </div>
+                    <ul>
+                        <li><a href="#" class="menuItem"><div class="menuIcon" style="background:url('img/navicon_card.png');background-size: 25px;"></div>Payment</a></li>
+                        <li><a href="#" class="menuItem"><div class="menuIcon" style="background:url('img/navicon_history.png');background-size: 25px;opacity:1!important;"></div>History</a></li>
+                        <li><a href="#" class="menuItem"><div class="menuIcon" style="background:url('img/navicon_share.png');background-size: 25px;"></div>Free Credit</a></li>
+                        <li><a href="#" class="menuItem" id="promoBtn"><div class="menuIcon" style="background:url('img/navicon_promo.png');background-size: 25px;"></div>Promotions</a></li>
+                        <li><a href="#" class="menuItem"><div class="menuIcon" style="background:url('img/navicon_notif.png');background-size: 25px;"></div>Notifications</a></li>
+                        <li><a href="#" class="menuItem"><div class="menuIcon" style="background:url('img/navicon_help.png');background-size: 25px;"></div>Help</a></li>
+                        <li><a href="#" class="menuItem"><div class="menuIcon" style="background:url('img/navicon_fulfill.png');background-size: 25px;"></div>Fulfill for Pippy</a></li>
+                        <li><a href="#" class="menuItem"><div class="menuIcon" style="background:url('img/navicon_settings.png');background-size: 25px;"></div>Settings</a></li>
+                    </ul>
+                    <div id="copyrightArea">
+                        About
+                    </div>
+                </div>
+            </div>
+            <div class="snap-drawer snap-drawer-right"></div>
+        </div>
+        
+        <div id="content" class="snap-content">
+             <!-- CONTENT STARTS --> 
+            
+
+          <!-- POPUPS -->
+            <!-- AI REQUEST SCREEN POPUP -->
+            <div id="popup_AI">
+              <div id="popup_AI_close" class="popupclosebtn"style="opacity:0.6;"></div>
+              <textarea name="AIrequest" id="AIrequest"></textarea>
+              <style>
+              #extraAItable
+              {
+                box-shadow: 0 10px 50px #000;
+              }
+              #extraAItable td
+              {
+                /*border: 1px solid #fff;*/
+                background-color:#f2f2f2;
+                text-align:center;
+              }
+              #extraAItabletoprow
+              {
+                width:100%;
+                font-size:12px;
+                text-transform: uppercase;
+                font-weight:bold;
+                color: #b0b0b0;
+                margin-top: -10px;
+                margin-bottom:-10px;
+              }
+              .extraInfoText
+              {
+                font-size: 18px;
+                font-weight: normal;
+                color: #333;
+              }
+              #locationicon
+              {
+                display: inline-block;
+                width: 20px;
+                height: 15px;
+                background: url('img/locationicon.png');
+                background-size: 15px;
+                opacity: 0.7;
+                background-repeat: no-repeat;
+                margin-bottom:-2px;
+              }
+              #surge
+              {
+                width: 50px;
+                height: 50px;
+                position: fixed;
+                top: 130px;
+                left: 50%;
+                margin-left: -24px;
+                border-radius: 50%;
+                background-color: #333;
+                z-index: 20000000000;
+                box-shadow: 0 3px 5px #ccc;
+              }
+              #multiplier
+              {
+                text-align: center;
+                color: #ef473a;
+                height: 28px;
+                font-size: 14px;
+                font-weight: bold;
+              }
+              #bolt
+              {
+                width: 50px;
+                height: 24px;
+                background: url('img/surgeicon.png');
+                background-size: 20px;
+                background-repeat: no-repeat;
+                background-position: bottom center;
+              }
+              #request_currencyindicator
+              {
+                font-size: 14px;
+                font-weight: bold;
+                color: #ccc;
+                display: inline-block;
+                padding-right: 5px;
+                height: 18px;
+                vertical-align: bottom;
+                margin-top: 0px;
+              }
+              </style>
+              <div id="surge">
+                <div id="bolt"></div>
+                <div id="multiplier">1.2x</div>
+              </div>
+              <div id="extraAI">
+                <table id="extraAItable">
+                  <tr>
+                    <td>
+                      <table id="extraAItabletoprow">
+                        <tr>
+                          <td style="border-right: 1px solid #ccc;">ETA<br><span id="eta" class="extraInfoText">45 min</span></td>
+                          <td>Test 2<br><span id="eta" class="extraInfoText">45 min</span></td>
+                        </tr>
+                      </table> 
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><a id="btn_getCostEstimate" style="display:block;">Get Cost Estimate</a></td>
+                  </tr>
+                  <tr>
+                    <td><span id="locationicon"></span>My Current Location</td>
+                  </tr>
+                </table>
+              </div>
+              <div id="AI_go_btn">LET'S GO</div>
+            </div>
+            <!-- / AI REQUEST SCREEN POPUP -->
+
+            <!-- BLACK OVERLAY -->
+            <div id="overlay"></div>
+            <!-- / BLACK OVERLAY -->
+          <!-- / POPUPS -->
+
+          <div id="page" class="quotePage">
+              <div id="toolbar">
+                <a href="#" id="open-left"></a>
+                <h1><div id="pippyLogo"></div></h1>
+                <div id="sep"></div>
+                <h1 class="pageTitle">GIVE US A SECOND <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw spinner"></i></h1>
+              </div>
+            <div id="quotePageMain">
+              we can get that done in <span class="emp">25 minutes</span> for <span class="emp">$12</span><br><button class="green btn" id="quote_ok" onclick="goodQuote_next()">Sounds good!</button> <span class="or">or</span> <button class="red btn" onclick="badQuote_next()" id="quote_bad">No thanks</button>
+            </div>
+
+              
+            </div>
+
+
+            <!-- HOME PAGE -->
+            <div id="page" class="homePage">
+              <div id="toolbar">
+                <a href="#" id="open-left"></a>
+                <h1><div id="pippyLogo"></div></h1>
+                <div id="sep"></div>
+                <h1 class="pageTitle">HOME</h1>
+              </div>
+            <div name="request" id="request" style="margin-top:-5px"></div>
+            <div id="options">
+              <style>
+              #options{
+                margin-top:-55px;
+              }
+              .event{
+                width:90%;
+                position:relative;
+                left:3%;
+                background-color:#ccc;
+                border-radius:3px;
+                margin-bottom:20px;
+              }
+              .event_title{
+                padding:25px;
+                padding-bottom:10px;
+                font-size:22px;
+                color:#333;
+              }
+              .event_description,.pb_info{
+                padding:25px;
+                padding-top:0px;
+                font-size:14px;
+                color:#333;
+              }
+              .pb_info{
+                padding-bottom:35px;
+              }
+              .interest{
+                padding:12px;
+                background-color:#7ddf5b;
+                color:#fff;
+                font-size:12px;
+                float:right;
+              } 
+              #app_title{
+                margin-left:3%;
+                font-size:28px;
+                color:#333;
+                padding-left: 20px;
+                margin-bottom:10px;
+              }
+              </style>
+              <!-- Fetch JSON -->
+              <span id="app_title">Find your ride</div>
+              <div class="event">
+                <div class="event_title">BEYOND WONDERLAND</div>
+                <div class="event_description">Beyond is a 3-day long EDM festival hosted at the NOS theatre in San Bernadino.</div>
+                <div class="pb_info">
+                  15 drivers &middot; 250 poolers
+                  <span class="interest">JOIN A RIDE</span>
+                </div>
+              </div>
+              
+              <div class="event">
+                <div class="event_title">BEYOND WONDERLAND</div>
+                <div class="event_description">Beyond is a 3-day long EDM festival hosted at the NOS theatre in San Bernadino.</div>
+                <div class="pb_info">
+                  15 drivers &middot; 250 poolers
+                  <span class="interest">JOIN A RIDE</span>
+                </div>
+              </div>
+
+
+            </div>
+
+              
+            </div>
+
+            <!-- PROMO PAGE -->
+            <div id="page" class="promoPage">
+              <div id="toolbar">
+                <a href="#" id="close-left" class="promoClose backbtn"></a>
+                <h1 class="pageTitle" style="left:50px!important;">PROMOTIONS</h1>
+              </div>
+
+              <!--<p style="width:100%;text-align:center;">Got a promo code? Enter it below</p>-->
+              <p style="width:100%;text-align:center;">Got a promo code? Enter it below</p><center>
+              <input type="text" id="promoCode" name="promoCode" style="font-size: 16px;border-radius: 5px;text-align:center;padding:10px;"/></center>
+              <h3>Promotion Codes</h3>
+              <hr />
+              <p>You currently do not have any promotion codes applied to your account.</p>
+            </div>
+
+            <!-- FREE CREDIT PAGE -->
+            <div id="page" class="creditPage">
+              <div id="toolbar">
+                <a href="#" id="close-left" class="creditClose">X</a>
+                <h1>Credit</h1>
+            </div>
+              <!--<h2 id="headline">Got a promo code?</h2>-->
+              <p style="width:100%;text-align:center;"><b>Got a promo code?</b> Enter it below</p>
+              <input type="text" id="creditValue" name="creditValue" style="font-size: 16px;border-radius: 2px;box-shadow: 0 10px 50px #000;"/>
+              <h3>Account Credit</h3>
+              <hr />
+              <p>You currently do not have any credit applied to your account.</p>
+            </div>
+
+
+            <!-- CONTENT ENDS -->
+          </div>
+        <style>
+        #open-left
+        {
+          background-size:23px;
+          background-position:left;
+        }
+        </style>
+        <script type="text/javascript" src="snap.js"></script>
+        <script type="text/javascript">
+        var snapper = new Snap({
+            element: document.getElementById('content'),
+            disable: 'right'
+        });
+        </script>
+        <!-- Large JS Scripts -->
+        <script type="text/javascript" src="demo/assets/demo.js"></script>
+        <script type='application/javascript' src='js/fastclick.js'></script>
+        <!-- / Large JS Scripts -->
+        <!-- Internal Script -->
+        <script>
+        //$(function() {
+          //  FastClick.attach(document.body);
+        //});
+        var attachFastClick = Origami.fastclick;
+        attachFastClick(document.body);
+
+        function getRandomInt(min, max) {
+          return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        function getTask()
+        {
+          var x = ["do my laundry",
+          "go get me a latte from Starbucks",
+          "get my girlfriend some roses for our anniversary",
+          "take my hamster for a walk",
+          "wash my car", 
+          "do my laundry",
+          "get me a burger",
+          "take my dog for a walk",
+          "pick up a package from FedEx",
+          "do my grocery shopping for me",
+          "book me a ticket to Hong Kong",
+          "book me the cheapest flight to Hong Kong",
+          "pick and buy a dress for me for the gala",
+          "take notes for me",
+          "rewrite my resume",
+          "handle my emails",
+          "do some research about oils",
+          "teach me mandarin",
+          "clean my house",
+          "teach me how to dance",
+          "mail my package",
+          "show me around the city",
+          "pick up my documents from the DMV",
+          "do my taxes",
+          "do my math homework",
+          "choose and buy the best laptop on Amazon for me",
+          "get me a gallon of water, chips and noodles",
+          "find me a place to study"];
+          return "I need someone to "+x[getRandomInt(0,x.length-1)];
+
+        }
+        function changer()
+        {
+          $("#request").text(getTask());
+        }
+        changer();
+        setInterval(changer, 3000);
+        
+// Time's a changing
+        
+        // routing
+        $("#promoBtn").click(function(){
+          $(".homePage").hide();
+          $(".promoPage").fadeIn("fast");
+          snapper.close();
+        });
+        $(".promoClose").click(function(){
+          $(".homePage").fadeIn("fast");
+          $(".promoPage").hide();
+        });
+
+        $("#request").click(function(){
+          $("#popup_AI").fadeIn("fast");
+          $("#overlay").fadeIn("fast");
+          function changer2()
+          {
+            $("#AIrequest").attr("placeholder",getTask());
+          }
+          $("#AIrequest").focus();
+          changer2();
+          setInterval(changer2, 3000);
+          snapper.close();
+        });
+        $("#AIrequest").focus(function(){
+          if($("#AIrequest").val() == "")
+          {
+            $("#AIrequest").val("I need someone to ");
+          }
+          });
+          $("#AIrequest").blur(function(){
+            if($("#AIrequest").val() == "I need someone to ")
+            {
+              $("#AIrequest").val(""); 
+            }
+          });
+        $("#popup_AI_close").click(function(){
+          $("#popup_AI").fadeOut("fast");
+          $("#overlay").fadeOut("fast");
+        });
+        $("#AI_go_btn").click(function(){
+          $(".homePage").fadeOut("fast");
+          $(".quotePage").fadeIn("fast");
+        });
+
+
+        $("#overlay").click(function(){
+          $("#popup_AI").fadeOut("fast");
+          $("#overlay").fadeOut("fast");
+        });
+
+        $("#btn_getCostEstimate").click(function(){
+          $("#btn_getCostEstimate").hide().html("<span id='request_currencyindicator'>USD</span>$20-$24").fadeIn()
+        });
+
+        </script>
+    </body>
+</html>
