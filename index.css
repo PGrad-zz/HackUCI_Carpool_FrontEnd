@@ -1,7 +1,71 @@
-.vertical-center {
-	position: relative;
-	top: 50%;
-	-webkit-transform: translateY(-50%);
-	-ms-transform: translateY(-50%);
-	transform: translateY(-50%);
+*,html{
+      font-family: 'Montserrat';
+}
+body
+{
+	background-color:#61b3f3;
+}
+#logo{
+	background:url('bigLogo.png');
+	width:167px;
+	height:275px;
+	position:relative;
+	margin-top:5%;
+	left:40%;
+}
+.btn{
+	width:190px;
+	padding:15px;
+	font-size:14px;
+	color:#fff;
+	text-align:center;
+	display:inline-block;
+	margin-right:10px;
+	cursor:pointer;
+}
+#facebooklogin,{
+	background-color:#3b5998!important;
+	width:190px!important;
+}
+#emaillogin{
+	background-color:green;
+}
+#register{
+	width:425px;
+	background-color:#ef473a;
+	margin-top:10px;
+}
+#buttonset{
+	position:absolute;
+	left:50%;
+	width:480px;
+	margin-left:-230px;
+	bottom:30%;
+}
+#appName{
+	color:#fff;
+	font-size:40px;
+	text-align:center;
+	margin-bottom:20px;
+}
+
+.fb-login-button{
+	font-size:14px!important;
+	width:190px!important;
+	margin-right:10px!important;
+	padding:15px!important;
+	padding-top:14px!important;
+	font-family: 'Montserrat'!important;
+	background-color:#3b5998!important;
+}
+
+.fb-login-button:hover{
+	background-color:#3b5998!important;
+}
+
+#facebook-login2{
+	display:inline-block;
+	width:190px;
+	background-color: #3b5998;
+	padding:15px;
 }
